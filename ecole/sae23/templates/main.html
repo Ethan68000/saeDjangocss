@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% load static %}
+    <link href="{%static 'index.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %}
+        mon titre
+        {% endblock %}
+     </title>
 </head>
 <body>
+<div id="fond">
+<ul>
+    <li id="nav"><a href="">Toutes les rateries</a></li>
+    <li id="nav"><a href="">Tout les rats</a></li>
+</ul>
 
+
+{% block content %}
+
+{% endblock %}
+</div>
 </body>
 </html>

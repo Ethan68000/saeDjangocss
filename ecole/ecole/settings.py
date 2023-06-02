@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'sae.apps.Sae23Config'
+    'sae23.apps.Sae23Config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
