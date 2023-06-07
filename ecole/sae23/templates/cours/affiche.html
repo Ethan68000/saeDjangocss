@@ -1,1 +1,11 @@
+
 {% extends 'main.html' %}
+{% block title %}
+{{ens.nom}}
+{% endblock %}
+
+{% block content %}
+<H1>Cours: {{cours.titre_cours}}, {{cours.date}}, {{cours.duree}}, {{cours.enseigant}} </H1>
+
+
+{% endblock %}

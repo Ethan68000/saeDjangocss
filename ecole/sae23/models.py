@@ -10,27 +10,25 @@ from django.db import models
 
 class Absence(models.Model):
     idabsence = models.SmallAutoField(primary_key=True)
-    idetudiant = models.SmallIntegerField(blank=True, null=True)
-    idcour = models.SmallIntegerField(blank=True, null=True)
     justifier = models.TextField(blank=True, null=True)  # This field type is a guess.
     justification = models.CharField(max_length=5000, blank=True, null=True)
+    etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE, db_column='etudiant', blank=True, null=True)
+    cours = models.ForeignKey('Cours', on_delete=models.CASCADE, db_column='cours', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'absence'
-
 
 class Cours(models.Model):
     idcours = models.SmallAutoField(primary_key=True)
     titre_cours = models.CharField(max_length=40, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
-    idenseignant = models.SmallIntegerField(blank=True, null=True)
     duree = models.TimeField(blank=True, null=True)
+    enseigant = models.ForeignKey('Enseigant', on_delete=models.CASCADE, db_column='enseigant', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cours'
-
 
 class Enseigant(models.Model):
     idenseignant = models.SmallAutoField(primary_key=True)
@@ -39,7 +37,7 @@ class Enseigant(models.Model):
     email = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'enseigant'
 
 
@@ -48,11 +46,11 @@ class Etudiant(models.Model):
     nom = models.CharField(max_length=40, blank=True, null=True)
     prenom = models.CharField(max_length=40, blank=True, null=True)
     email = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    idgroupe = models.SmallIntegerField(blank=True, null=True)
-    photo = models.TextField(blank=True, null=True)
+    photo = models.ImageField(upload_to="ecole/", null=True)
+    groupe = models.ForeignKey('Groupe', on_delete=models.CASCADE, db_column='groupe', blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'etudiant'
 
 
@@ -61,7 +59,5 @@ class Groupe(models.Model):
     nom = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'groupe'
-
-# Create your models here.

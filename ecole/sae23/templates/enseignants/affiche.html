@@ -1,1 +1,11 @@
+
 {% extends 'main.html' %}
+{% block title %}
+{{ens.nom}}
+{% endblock %}
+
+{% block content %}
+<H1>Enseignant : {{ens.nom}}, {{ens.prenom}}, {{ens.email}} </H1>
+
+
+{% endblock %}
