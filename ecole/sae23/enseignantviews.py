@@ -12,7 +12,7 @@ def ajout(request):
 def traitement(request):
     rform = EnsForm(request.POST)
     if rform.is_valid():
-        grp = rform.save()
+        ens = rform.save()
         return HttpResponseRedirect("/ecole/allens")
     else:
         return render(request, 'enseinants/ajout.html', {"form" : rform})

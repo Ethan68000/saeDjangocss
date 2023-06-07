@@ -10,8 +10,8 @@ from django.db import models
 
 class Absence(models.Model):
     idabsence = models.SmallAutoField(primary_key=True)
-    justifier = models.TextField(blank=True, null=True)  # This field type is a guess.
-    justification = models.CharField(max_length=5000, blank=True, null=True)
+    justifier = models.BooleanField(blank=True, null=True)  # This field type is a guess.
+    justification = models.FileField(null=True, upload_to="justification/")
     etudiant = models.ForeignKey('Etudiant', on_delete=models.CASCADE, db_column='etudiant', blank=True, null=True)
     cours = models.ForeignKey('Cours', on_delete=models.CASCADE, db_column='cours', blank=True, null=True)
 
@@ -46,7 +46,7 @@ class Etudiant(models.Model):
     nom = models.CharField(max_length=40, blank=True, null=True)
     prenom = models.CharField(max_length=40, blank=True, null=True)
     email = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
-    photo = models.ImageField(upload_to="ecole/", null=True)
+    photo = models.ImageField(upload_to="photo/", null=True)
     groupe = models.ForeignKey('Groupe', on_delete=models.CASCADE, db_column='groupe', blank=True, null=True)
 
     class Meta:
