@@ -10,13 +10,14 @@ def ajout(request):
         return render(request, 'absence/ajout.html', {"form": form})
 
 def traitement(request):
-    rform = AbsForm(request.POST)
-    if rform.is_valid():
-        abs = rform.save()
-        abs.save()
-        return HttpResponseRedirect("/ecole/allabs")
-    else:
-        return render(request, 'absence/ajout.html', {"form" : rform})
+    if request.method == "POST":
+        rform = AbsForm(request.POST, request.FILES)
+        if rform.is_valid():
+            abs = rform.save()
+            abs.save()
+            return HttpResponseRedirect("/ecole/allabs")
+        else:
+            return render(request, 'absence/ajout.html', {"form" : rform})
 
 def all(request):
     liste = list(models.Absence.objects.all())
@@ -32,15 +33,14 @@ def update(request, id):
     return render(request, "absence/ajout.html", {"form":form, "id":id})
 
 def updatetraitement(request, id):
-    if request.method == "POST":
-        rform = AbsForm(request.POST, request.FILES)
-        if rform.is_valid():
-            abs = rform.save(commit=False)
-            abs.idabsence = id
-            abs.save()
-            return HttpResponseRedirect("/ecole/allabs")
-        else:
-            return render(request, "absence/update.html", {"form":rform, "id": id})
+    rform = AbsForm(request.POST)
+    if rform.is_valid():
+        abs = rform.save(commit=False)
+        abs.idabsence = id
+        abs.save()
+        return HttpResponseRedirect("/ecole/allabs")
+    else:
+        return render(request, "absence/update.html", {"form":rform, "id": id})
 
 def delete(request, id):
     abs = models.Absence.objects.get(pk=id)
