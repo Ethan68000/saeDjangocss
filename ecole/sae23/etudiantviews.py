@@ -11,12 +11,15 @@ def ajout(request):
         return render(request, 'etudiants/ajout.html', {"form": form})
 
 def traitement(request):
-    rform = EtudForm(request.POST, request.FILES)
-    if rform.is_valid():
-        rform = rform.save()
-        return HttpResponseRedirect("/ecole/alletud")
-    else:
-        return render(request, 'etudiants/ajout.html', {"form" : rform})
+
+    if request.method == "POST":
+        rform = EtudForm(request.POST, request.FILES)
+        if rform.is_valid():
+            etud = rform.save()
+            etud.save()
+            return HttpResponseRedirect("/ecole/alletud")
+        else:
+            return render(request, 'etudiants/ajout.html', {"form" : rform})
 
 def all(request):
     liste = list(models.Etudiant.objects.all())
@@ -34,8 +37,8 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = EtudForm(request.POST)
     if rform.is_valid():
-        etud = rform.save(commit=True)
-        etud.id = id
+        etud = rform.save(commit=False)
+        etud.idetudiant = id
         etud.save()
         return HttpResponseRedirect("/ecole/alletud")
     else:

@@ -13,6 +13,7 @@ def traitement(request):
     rform = coursForm(request.POST)
     if rform.is_valid():
         cours = rform.save()
+        cours.save()
         return HttpResponseRedirect("/ecole/allcours")
     else:
         return render(request, 'cours/ajout.html', {"form" : rform})
@@ -34,8 +35,8 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = coursForm(request.POST)
     if rform.is_valid():
-        cours = rform.save(commit=True)
-        cours.id = id
+        cours = rform.save(commit=False)
+        cours.idcours = id
         cours.save()
         return HttpResponseRedirect("/ecole/allcours")
     else:

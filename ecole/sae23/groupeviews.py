@@ -13,6 +13,7 @@ def traitement(request):
     rform = GrpForm(request.POST)
     if rform.is_valid():
         grp = rform.save()
+        grp.save()
         return HttpResponseRedirect("/ecole/allgrp")
     else:
         return render(request, 'groupe/ajout.html', {"form" : rform})
@@ -33,8 +34,8 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = GrpForm(request.POST)
     if rform.is_valid():
-        grp = rform.save(commit=True)
-        grp.id = id
+        grp = rform.save(commit=False)
+        grp.idgroupe = id
         grp.save()
         return HttpResponseRedirect("/ecole/allgrp")
     else:

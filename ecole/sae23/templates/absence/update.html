@@ -5,7 +5,7 @@
     <title>Update</title>
 </head>
 <body>
-    <form method="post" action="/ecole/updatetraitementabs/">
+    <form method="post" action="/ecole/updatetraitementabs/{{id}}">
         {% csrf_token %}
         {{ form.as_ul }}
             <input type="submit" value="envoyer les données"\>

@@ -13,6 +13,7 @@ def traitement(request):
     rform = EnsForm(request.POST)
     if rform.is_valid():
         ens = rform.save()
+        ens.save()
         return HttpResponseRedirect("/ecole/allens")
     else:
         return render(request, 'enseinants/ajout.html', {"form" : rform})
@@ -33,8 +34,8 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = EnsForm(request.POST)
     if rform.is_valid():
-        ens = rform.save(commit=True)
-        ens.id = id
+        ens = rform.save(commit=False)
+        ens.idenseignant = id
         ens.save()
         return HttpResponseRedirect("/ecole/allens")
     else:

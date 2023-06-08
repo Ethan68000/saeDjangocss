@@ -13,6 +13,7 @@ def traitement(request):
     rform = AbsForm(request.POST)
     if rform.is_valid():
         abs = rform.save()
+        abs.save()
         return HttpResponseRedirect("/ecole/allabs")
     else:
         return render(request, 'absence/ajout.html', {"form" : rform})
@@ -33,8 +34,8 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = AbsForm(request.POST)
     if rform.is_valid():
-        abs = rform.save(commit=True)
-        abs.id = id
+        abs = rform.save(commit=False)
+        abs.idabsence = id
         abs.save()
         return HttpResponseRedirect("/ecole/allabs")
     else:
