@@ -13,7 +13,7 @@ def ajout(request):
 def traitement(request):
     rform = EtudForm(request.POST, request.FILES)
     if rform.is_valid():
-        etud = rform.save()
+        rform = rform.save()
         return HttpResponseRedirect("/ecole/alletud")
     else:
         return render(request, 'etudiants/ajout.html', {"form" : rform})
@@ -34,10 +34,10 @@ def update(request, id):
 def updatetraitement(request, id):
     rform = EtudForm(request.POST)
     if rform.is_valid():
-        etud = rform.save(commit=False)
+        etud = rform.save(commit=True)
         etud.id = id
         etud.save()
-        return HttpResponseRedirect("/ecole/alletudiant")
+        return HttpResponseRedirect("/ecole/alletud")
     else:
         return render(request, "etudiants/update.html", {"form":rform, "id": id})
 
