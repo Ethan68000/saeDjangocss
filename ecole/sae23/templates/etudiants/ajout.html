@@ -6,9 +6,9 @@
 {% block content %}
 
     {% if id is not None %}
-        <form method="POST" action="/ecole/updatetraitementetud/{{id}}/">
+        <form method="POST" action="/ecole/updatetraitementetud/{{id}}/"  enctype="multipart/form-data">
     {% else %}
-        <form method="POST" action="/ecole/traitementetud/">
+        <form method="POST" action="/ecole/traitementetud/"  enctype="multipart/form-data">
     {% endif %}
         {% csrf_token %}
         {{form.as_ul}}

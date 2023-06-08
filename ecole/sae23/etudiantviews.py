@@ -11,7 +11,6 @@ def ajout(request):
         return render(request, 'etudiants/ajout.html', {"form": form})
 
 def traitement(request):
-
     if request.method == "POST":
         rform = EtudForm(request.POST, request.FILES)
         if rform.is_valid():

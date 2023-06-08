@@ -48,7 +48,7 @@ class Enseigant(models.Model):
     idenseignant = models.SmallAutoField(primary_key=True)
     nom = models.CharField(max_length=40, blank=True, null=True)
     prenom = models.CharField(max_length=40, blank=True, null=True)
-    email = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    email = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         chaine = f"{self.nom} {self.prenom}"
@@ -66,7 +66,7 @@ class Etudiant(models.Model):
     idetudiant = models.SmallAutoField(primary_key=True)
     nom = models.CharField(max_length=40, blank=True, null=True)
     prenom = models.CharField(max_length=40, blank=True, null=True)
-    email = models.CharField(max_length=255, db_collation='utf8mb3_general_ci', blank=True, null=True)
+    email = models.CharField(max_length=255, blank=True, null=True)
     photo = models.ImageField(upload_to="photo/", null=True, blank=True)
     groupe = models.ForeignKey('Groupe', on_delete=models.CASCADE, db_column='groupe', blank=True, null=True)
 
