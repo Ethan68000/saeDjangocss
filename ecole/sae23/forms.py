@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 from . import models
+from django import forms
+
 
 class EnsForm(ModelForm):
     class Meta:
@@ -53,3 +55,6 @@ class AbsForm(ModelForm):
             'justifier': _('Justifié'),
             'justification': _('Justification'),
         }
+
+class TraitementFichierForm(forms.Form):
+    file = forms.FileField()

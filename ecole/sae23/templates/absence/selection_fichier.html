@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block title %}
+Absence
+{% endblock %}
+{% block content %}
+
+<form method="post" action="/ecole/traitement_fichier/" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <button type="submit">Sélectionner le fichier</button>
+</form>
+{% endblock %}

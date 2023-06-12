@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import AbsForm
+from .forms import AbsForm, TraitementFichierForm
 from . import models
-
+from .utils import ajouter_absences_depuis_fichier
 
 # Create your views here.
 def ajout(request):
@@ -14,6 +14,10 @@ def traitement(request):
         rform = AbsForm(request.POST, request.FILES)
         if rform.is_valid():
             abs = rform.save()
+            if 'justification' in request.FILES:
+                abs.justifier = True
+            else:
+                abs.justifier = False
             abs.save()
             return HttpResponseRedirect("/ecole/allabs")
         else:
@@ -36,6 +40,10 @@ def updatetraitement(request, id):
     rform = AbsForm(request.POST)
     if rform.is_valid():
         abs = rform.save(commit=False)
+        if 'justification' in request.FILES:
+            abs.justifier = True
+        else:
+            abs.justifier = False
         abs.idabsence = id
         abs.save()
         return HttpResponseRedirect("/ecole/allabs")
@@ -46,3 +54,13 @@ def delete(request, id):
     abs = models.Absence.objects.get(pk=id)
     abs.delete()
     return HttpResponseRedirect("/ecole/allabs")
+
+def selectionner_fichier(request):
+    form = TraitementFichierForm()
+    return render(request, 'absence/selection_fichier.html', {'form': form})
+def traitement_fichier(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        ajouter_absences_depuis_fichier(file)
+        return HttpResponseRedirect('/ecole/allabs')
+    return render(request, 'absence/selection_fichier.html')

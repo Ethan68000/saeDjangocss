@@ -18,6 +18,8 @@ urlpatterns = [
                   path("updateabs/<int:id>/", absenceviews.update),
                   path("updatetraitementabs/<int:id>/", absenceviews.updatetraitement),
                   path("deleteabs/<int:id>", absenceviews.delete),
+                  path('selectionner_fichier/', absenceviews.selectionner_fichier),
+                  path('traitement_fichier/', absenceviews.traitement_fichier),
 
                   path('ajoutcours/', coursviews.ajout),
                   path('traitementcours/', coursviews.traitement),

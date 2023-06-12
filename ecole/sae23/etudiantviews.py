@@ -26,7 +26,8 @@ def all(request):
 
 def affiche(request, id):
     etud = models.Etudiant.objects.get(pk=id)
-    return render(request,"etudiants/affiche.html",{"etud": etud})
+    absences = models.Absence.objects.filter(etudiant=etud)
+    return render(request,"etudiants/affiche.html",{"etud": etud, "absences": absences})
 
 def update(request, id):
     etud = models.Etudiant.objects.get(pk=id)
