@@ -28,6 +28,7 @@ urlpatterns = [
                   path("updatecours/<int:id>/", coursviews.update),
                   path("updatetraitementcours/<int:id>/", coursviews.updatetraitement),
                   path("deletecours/<int:id>", coursviews.delete),
+                  path('bienvenuecours/', coursviews.bienvenue),
 
                   path('ajoutgrp/', groupeviews.ajout),
                   path('traitementgrp/', groupeviews.traitement),

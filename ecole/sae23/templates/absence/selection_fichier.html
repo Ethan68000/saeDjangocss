@@ -3,7 +3,8 @@
 Absence
 {% endblock %}
 {% block content %}
-
+<h1>Ajout d'une absence via fichier : </h1>
+<br>
 <form method="post" action="/ecole/traitement_fichier/" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_ul }}

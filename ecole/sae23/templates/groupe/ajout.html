@@ -4,7 +4,8 @@ Enseignant
 {% endblock %}
 
 {% block content %}
-
+<h1>Ajout d'un Groupe : </h1>
+<br>
     {% if id is not None %}
         <form method="POST" action="/ecole/updatetraitementgrp/{{id}}/">
     {% else %}

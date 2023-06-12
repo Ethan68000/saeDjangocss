@@ -47,3 +47,7 @@ def delete(request, id):
     cours = models.Cours.objects.get(pk=id)
     cours.delete()
     return HttpResponseRedirect("/ecole/allcours")
+
+def bienvenue(request):
+    liste = list(models.Cours.objects.all())
+    return render(request,'cours/bienvenue.html', {"liste" : liste})

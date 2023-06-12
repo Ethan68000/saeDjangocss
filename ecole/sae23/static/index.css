@@ -8,6 +8,7 @@ ul {
 
 #nav {
     float: left;
+    transition: trabnsform 0.3s;
 }
 #nav a {
     display: block;
@@ -15,11 +16,13 @@ ul {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: 'Papyrus', cursive;
 }
 
 
 #nav a:hover {
     background-color: #111;
+    transform: scale(1.4)
 }
 
 
@@ -41,11 +44,14 @@ html, body{
 }
 
 h1{
-    margin-left: 45%;
+    text-align: center;
+    font-family: 'Papyrus', cursive;
+    color: rgb(165, 38, 10);
 }
 
 h2{
     margin-left: 2%;
+    font-family: 'Papyrus', cursive;
 }
 
 #desc{
@@ -64,10 +70,11 @@ h2{
     border-width: 2px;
     border-color: #111;
     margin-left: 2%;
+    font-family: 'Papyrus', cursive;
 }
 
 #riaj:hover, #riaj:active {
-    background-color: rgba(0, 255, 76);
+    background-color: rgba(223, 109, 20);
   }
 
 body{
@@ -78,4 +85,26 @@ ul{
     border-style: groove;
     border-width: 3px;
     border-color: rgb(139,69,19);
+}
+
+.zoom-effect {
+    transition: transform 0.3s;
+}
+
+.zoom-effect:hover {
+    transform: scale(1.1);
+}
+
+.mon-paragraphe {
+  color: red;
+  text-align: center;
+  color: rgb(165, 38, 10);
+}
+
+h10{
+    margin-left: 45%;
+    margin-top: 1%;
+    font-family: 'Papyrus', cursive;
+    color: rgb(165, 38, 10);
+    font-size: 2em;
 }

@@ -4,7 +4,8 @@ Cours
 {% endblock %}
 
 {% block content %}
-
+<h1>Ajout d'un cours : </h1>
+<br>
     {% if id is not None %}
         <form method="POST" action="/ecole/updatetraitementcours/{{id}}/">
     {% else %}
